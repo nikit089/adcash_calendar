@@ -1,0 +1,40 @@
+body { margin: 0; background-color: #292929; }
+a { text-decoration: none; display: inline-block; padding: 6px 12px;}
+table { width: 100%; box-sizing: border-box; box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.1); font-family: 'Ubuntu'; /*border-collapse: collapse;*/ border-spacing: 0; background-color: #333333; }
+th, td { border: 1px solid #555; box-sizing: border-box; }
+th { text-transform: uppercase; font-size:11px; font-weight:700; padding: 15px 0; color: #bbb; background-color: #292929; letter-spacing: 1px; }
+td { width: 14.285%; color: #ccc; font-weight: 400; font-size: 14px; padding: 1.5% 1.5% 5%; vertical-align: initial; padding: 1.5% 0 ; height: 128px; }
+td#nop { background-color: #222; width: 14.285%; transition: all 0.3s; font-size: 14px; color: #aaa; font-weight: 400; font-size: 14px; padding: 1.5% 1.5% 5%; vertical-align: initial; padding: 1.5% 0 ; height: 110px; border: 1px solid #444; }
+.testa { font-family: 'Ubuntu'; color: rgba(255,255,255,0.5); font-weight: 400; font-size: 20px; width:100%;  background-color: #292929; text-align:center; padding: 1.5% 0 1.5%; }
+.day:hover { background-color: #505050; cursor:pointer; border:1px solid #111; }
+.today { color: #FFF; background-color: #505050; !important; border:1px solid #06D85F; }
+span.number { margin-left: 10% }
+span.sdate { color:#333; font-size: 12px; font-family: 'Ubuntu';margin-left:10px; }
+span.title { font-size:13px; position: relative; margin-left:10%; top:5px; font-weight: 600; }
+span.desc { font-size:12px; position: relative; margin-left:10%; margin-right:10%; top:11px; display:block; word-break: break-all; }
+span.time { font-size:12px; position: relative; margin-left:10%; }
+#prev{ margin-right: 10px; }
+#next{ margin-left: 10px; }
+.butt { background-color: #777; color: white; }
+.round { height:16px; font-size:14px; font-weight:bold; }
+span.mese{ color:#ddd; font-weight:400; }
+.testa { display: flex; justify-content: space-between; }
+.testa > div#left { width: 41%; }
+textarea { resize: none; overflow: auto; width:100%; padding: 10px 12px; margin: 8px 0; border: 1px solid #ccc; }
+input[type=text] { width: 100%;padding: 10px 12px;margin: 8px 0;display: inline-block;border: 1px solid #ccc; box-sizing: border-box; }
+.testa > div#center{ width: 18%; }
+.testa > div#right { width: 41%; }
+#left{ text-align:right; }
+#right{ text-align:left; }
+.button { margin-right:25px;font-size: 14px; color: #ccc; border: 1px solid #06D85F; text-decoration: none;cursor: pointer;height:16px; }
+.button2 { margin-left:25px;font-size: 14px; color: #ccc; border: 1px solid #06D85F; text-decoration: none;cursor: pointer;height:16px; }
+.button:hover { background: #06D85F;color: #fff; }
+.button2:hover { background: #06D85F;color: #fff; }
+.overlay { position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.7); visibility: hidden; opacity: 0; }
+.overlay:target { visibility: visible; opacity: 1; }
+.popup { margin: 70px auto; padding: 20px; background: #fff; width: 30%; position: relative; }
+.popup h2 { margin-top: 0; color: #333; font-family: Tahoma, Arial, sans-serif; }
+.popup .close { position: absolute; top: 20px; right: 30px; font-size: 30px; font-weight: bold; text-decoration: none; color: #333; }
+.popup .close:hover { color: #06D85F; }
+.popup .content { max-height: 40%; overflow: auto; }
+@media screen and ( max-width: 700px ){ .box{ width: 70%; } .popup{ width: 70%; }}

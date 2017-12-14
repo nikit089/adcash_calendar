@@ -1,0 +1,152 @@
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="testa">
+  <div id="left">
+    <a class="button" href="#popup1">Add event</a>
+    <a href="#" class="butt round" id="prev"><</a>
+  </div><div id="center">
+    <span class="mese"></span>
+  </div><div id="right">
+    <a href="#" class="butt round" id="next">></a>
+    <a class="button2" href="#popup2">Delete event</a>
+  </div></div>
+<table id="test">
+<tr class="head">
+    <th class="day-name">Sun</th>
+    <th class="day-name">Mon</th>
+    <th class="day-name">Tue</th>
+    <th class="day-name">Wed</th>
+    <th class="day-name">Thu</th>
+    <th class="day-name">Fri</th>
+    <th class="day-name">Sat</th>
+  </tr>
+</table>
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h2>Add event</h2>
+    <a class="close" href="#">&times;</a>
+    <div class="content">
+      <input type="text" maxlength="15" value="" id="ti" placeholder="Title"></br>
+      <input type="text" maxlength="60" value="" id="ds" placeholder="Description ..."></br>
+       <select id="dt">
+       </select><span class="sdate"></span>
+      <input type="text" maxlength="5" value="" id="tm" placeholder="Time ex. 12:50">
+      </br></br>
+     <button onclick="submitTxt()">Save</button>
+    </div>
+  </div>
+</div>
+<div id="popup2" class="overlay">
+  <div class="popup">
+    <h2>Delete event</h2>
+    <a class="close" href="#">&times;</a>
+    <div class="content">
+       <select id="dtm">
+       </select><span class="sdate"></span>
+       </br></br>
+     <button onclick="deleteTxt()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript"> 
+var NomeMesi = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+cd= new Date();
+dt= new Date();
+month=dt.getMonth(); 
+year=dt.getFullYear();  
+dt=new Date(year, month, 01);
+first_day=dt.getDay(); 
+cdv=cd.getDate(); 
+dt.setMonth(month+1,0); 
+last_date=dt.getDate(); 
+dy=1;  
+$(".mese").text(NomeMesi[dt.getMonth()]+" "+year);
+for (i=0;i<=41;i++) {
+      if((i>= first_day) && (dy<= last_date)){
+        $( "#dtm,#dt" ).append( "<option value='"+dy+"'>"+dy+"</option>" );
+        if(dy == cdv){ $('<td id="d'+dy+'" class="day today"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><span class="desc"></span><br><span class="time"></span>').appendTo('#test'); } else {
+        $('<td id="d'+dy+'" class="day"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><span class="desc"></span><br><span class="time"></span>').appendTo('#test');
+        }
+        dy=dy+1;
+      } else { $('<td id="nop" class="day"></td><').html('<span class="number">-</span>').appendTo('#test'); }
+    }
+var productdivs = $("table .day");
+   for(var i = 0; i < productdivs .length; i+=7) {
+     productdivs.slice(i, i+7).wrapAll("<tr class='test'></tr>");
+   }
+contatore = dt.getMonth();
+if (contatore > 0){
+contatore = dt.getMonth();
+} else { contatore = 12; }
+$('#next').click(function (){
+  $( "table .test" ).remove();
+    contatore = (contatore + 1) % NomeMesi.length;
+   $(".mese").text(NomeMesi[contatore]+" "+year);
+    dt=new Date(year, contatore, 01);
+    var first_day=dt.getDay(); 
+    dt.setMonth(contatore+1,0);  
+    var last_date=dt.getDate(); 
+    var dy=1; 
+    for (i=0;i<=41;i++) {
+      if((i>= first_day) && (dy<= last_date)){
+        if(dy == cdv && contatore == month){ $('<td id="d'+dy+'" class="day today"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><span class="desc"></span><br><span class="time"></span>').appendTo('#test'); } else {
+        $('<td id="d'+dy+'" class="day"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><br><span class="desc"></span><br><span class="time"></span>').appendTo('#test');
+        }
+        dy=dy+1;
+      } else { $('<td id="nop" class="day"></td><').html('<span class="number">-</span>').appendTo('#test'); }
+    }
+var productdivs = $("table .day");
+   for(var i = 0; i < productdivs .length; i+=7) {
+     productdivs.slice(i, i+7).wrapAll("<tr class='test'></tr>");
+   }
+   $(".sdate").text(NomeMesi[contatore]+" "+year);
+  });
+  $('#prev').click(function (){
+  if (contatore <= 0){
+    contatore = 12;
+  } 
+  $( "table .test" ).remove();
+    contatore = (contatore - 1) % NomeMesi.length;
+    dt=new Date(year, contatore, 01);
+    var first_day=dt.getDay(); 
+    dt.setMonth(contatore-1,0);  
+    var last_date=dt.getDate(); 
+    var dy=1;  
+    $(".mese").text(NomeMesi[contatore]+" "+year);
+    for (i=0;i<=41;i++) {
+      if((i>= first_day) && (dy<= last_date)){
+        if(dy == cdv && contatore == month){ $('<td id="d'+dy+'" class="day today"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><span class="desc"></span><br><span class="time"></span>').appendTo('#test'); } else {
+        $('<td id="d'+dy+'" class="day"></td><').html('<span class="number">'+dy+'</span><br><span class="title"></span><span class="desc"></span><br><span class="time"></span>').appendTo('#test');
+        }
+        dy=dy+1;
+      } else { $('<td  id="nop" class="day"></td><').html('<span class="number">-</span>').appendTo('#test'); }
+    }
+var productdivs = $("table .day");
+   for(var i = 0; i < productdivs .length; i+=7) {
+     productdivs.slice(i, i+7).wrapAll("<tr class='test'></tr>");
+   }
+   $(".sdate").text(NomeMesi[contatore]+" "+year);
+});
+ $(".sdate").text(NomeMesi[contatore]+" "+year);
+function submitTxt() {
+  dayevent = $("#dt").val();
+  $("td#d"+dayevent+" span.title").text($("#ti").val());
+  $("td#d"+dayevent+" span.desc").text($("#ds").val());
+  $("td#d"+dayevent+" span.time").text($("#tm").val());
+}
+function deleteTxt() {
+  dayevent = $("#dt").val();
+  $("td#d"+dayevent+" span.title").text("");
+  $("td#d"+dayevent+" span.desc").text("");
+  $("td#d"+dayevent+" span.time").text("");
+}
+</script>
+</body>
+</html>
